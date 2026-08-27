@@ -31,4 +31,3 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     message: str
-    sessionId: Optional[str] = None

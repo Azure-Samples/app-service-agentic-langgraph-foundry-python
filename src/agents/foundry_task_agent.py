@@ -1,3 +1,4 @@
+import asyncio
 import os
 from typing import Optional
 from azure.identity import DefaultAzureCredential
@@ -54,7 +55,8 @@ class FoundryTaskAgent:
                 print(f"Agent with name '{agent_name}' not found in project.")
                 return
                         
-            # Create a conversation for this session
+            # App Service authentication protects this sample, which intentionally
+            # keeps one server-managed conversation per worker process.
             conversation = self.openai_client.conversations.create()
             self.conversation_id = conversation.id
             print("Foundry agent initialized successfully")
@@ -82,13 +84,15 @@ class FoundryTaskAgent:
         
         try:
             # Add user message to the conversation
-            self.openai_client.conversations.items.create(
+            await asyncio.to_thread(
+                self.openai_client.conversations.items.create,
                 conversation_id=self.conversation_id,
                 items=[{"type": "message", "role": "user", "content": message}],
             )
             
             # Create response using the agent
-            response = self.openai_client.responses.create(
+            response = await asyncio.to_thread(
+                self.openai_client.responses.create,
                 conversation=self.conversation_id,
                 extra_body={"agent": {"name": self.agent.name, "type": "agent_reference"}},
                 input="",

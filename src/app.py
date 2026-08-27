@@ -24,6 +24,7 @@ class TaskManagerApp:
             # Local development
             server_url = "http://localhost:3000"
         
+        # API access is enforced by App Service authentication in infra/main.bicep.
         self.app = FastAPI(
             title="Task Manager API",
             version="1.0.0",

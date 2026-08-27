@@ -133,10 +133,7 @@ def create_api_routes(
             if not chat_request.message:
                 raise HTTPException(status_code=400, detail="Message is required")
             
-            response = await langgraph_agent.process_message(
-                chat_request.message, 
-                chat_request.sessionId
-            )
+            response = await langgraph_agent.process_message(chat_request.message)
             return response
         except HTTPException:
             raise
