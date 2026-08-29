@@ -3,7 +3,7 @@ azure-ai-projects==2.0.0b2
 azure-identity==1.25.1
 fastapi==0.124.0
 langchain==1.1.2
-langchain-core==1.1.1
+langchain-core==1.2.11
 langchain-openai==1.1.0
 langgraph==1.0.4
 langgraph-prebuilt==1.0.4
