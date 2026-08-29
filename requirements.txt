@@ -9,5 +9,5 @@ langgraph==1.0.4
 langgraph-prebuilt==1.0.4
 pydantic==2.12.5
 python-dotenv==1.2.1
-python-multipart==0.0.20
+python-multipart==0.0.22
 uvicorn==0.38.0
